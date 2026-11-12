@@ -1,0 +1,30 @@
+---
+import Button from './Button.astro';
+import Photo from './Photo.astro';
+import SectionHeading from './SectionHeading.astro';
+import { highlights } from '../config/content.js';
+---
+<section class="section">
+  <div class="container">
+    <SectionHeading eyebrow="Lo que hacemos" title="Un solo equipo para cuidar tu hogar" />
+    <div class="bento">
+      {highlights.map((item) => (
+        <article class:list={['bento__item', `bento__item--${item.size}`]} data-reveal>
+          <div class="media bento__media">
+            <Photo
+              name={item.image}
+              alt={item.alt}
+              sizes={item.size === 'wide' ? '(max-width: 768px) 100vw, 58vw' : '(max-width: 768px) 100vw, 42vw'}
+              position={item.position}
+            />
+          </div>
+          <div class="bento__body">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+            <Button wa={item.wa} variant="white">Contactar</Button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

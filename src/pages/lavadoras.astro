@@ -1,0 +1,102 @@
+---
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import Checklist from '../components/Checklist.astro';
+import OtherServices from '../components/OtherServices.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { company } from '../config/company.js';
+import { breadcrumbSchema, serviceSchema } from '../config/schema.js';
+import Layout from '../layouts/Layout.astro';
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: '/servicios/' },
+  { label: 'Lavadoras', href: '/lavadoras/' },
+];
+const description =
+  'Reparación, mantenimiento e instalación de lavadoras de carga superior, carga frontal y lavasecadoras a domicilio en Bogotá y municipios cercanos.';
+---
+<Layout
+  title={`Reparación y mantenimiento de lavadoras en Bogotá | ${company.name}`}
+  description={description}
+  wa="lavadoras"
+  schema={[serviceSchema({ name: 'Reparación, mantenimiento e instalación de lavadoras', description, path: '/lavadoras/' }), breadcrumbSchema(crumbs)]}
+>
+  <PageHero
+    title="Reparación, mantenimiento e instalación de lavadoras"
+    text="Cuida tu lavadora y prolonga su vida útil con atención técnica especializada."
+    image="tecnico-lavadora"
+    alt="Técnico reparando la parte inferior de una lavadora de carga frontal"
+    position="60% 50%"
+    icon="washing-machine"
+    wa="lavadoras"
+    breadcrumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="split" style="align-items: start">
+        <div data-reveal>
+          <p class="eyebrow">Instalación</p>
+          <h2>Instalación de lavadoras</h2>
+          <div class="prose" style="margin-top: 16px">
+            <p>Instalamos en tu hogar los siguientes tipos de equipos:</p>
+            <ul class="chips">
+              <li>Lavadoras de carga superior</li>
+              <li>Lavadoras de carga frontal</li>
+              <li>Lavasecadoras</li>
+            </ul>
+          </div>
+        </div>
+        <div data-reveal>
+          <p class="eyebrow">Reparación</p>
+          <h2>Reparación de lavadoras</h2>
+          <div class="prose" style="margin-top: 16px">
+            <p>Realizamos reparación de lavadoras a domicilio, con diagnóstico inicial y presupuesto según el tipo de falla y el equipo.</p>
+            <div class="btn-row"><Button wa="lavadoras">Solicitar servicio</Button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gray">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Mantenimiento"
+        title="Mantenimiento de lavadoras"
+        text="El mantenimiento depende de la complejidad y del tipo de lavadora. De forma general incluye:"
+      />
+      <ol class="task-grid">
+        <li class="task" data-reveal>Ajuste y limpieza de válvulas.</li>
+        <li class="task" data-reveal>Lavado del tanque.</li>
+        <li class="task" data-reveal>Ajuste y lubricación del motor.</li>
+      </ol>
+      <div class="load-grid" style="margin-top: 28px">
+        <article class="load-card" data-reveal>
+          <div class="media">
+            <Photo name="tecnico-lavadora-superior" alt="Técnico trabajando en el interior de una lavadora de carga superior" sizes="(max-width: 760px) 100vw, 50vw" position="50% 35%" />
+          </div>
+          <div class="load-card__body">
+            <h3>Mantenimiento de lavadoras de carga superior</h3>
+            <Checklist items={['Desarme general.', 'Lubricación de bomba y motor.', 'Limpieza de tinas, aro y agitador.', 'Revisión interna del estado de la lavadora.']} />
+          </div>
+        </article>
+        <article class="load-card" data-reveal>
+          <div class="media">
+            <Photo name="lavadora-frontal" alt="Lavadora blanca de carga frontal en una zona de ropas" sizes="(max-width: 760px) 100vw, 50vw" position="55% 55%" />
+          </div>
+          <div class="load-card__body">
+            <h3>Mantenimiento de lavadoras de carga frontal</h3>
+            <Checklist items={['Limpieza del dispensador.', 'Limpieza y lubricación de la bomba.', 'Limpieza de válvulas de entrada de agua.', 'Pastilla de autolimpieza cuando sea necesaria.']} />
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="¿Tu lavadora presenta alguna falla?" text="Escríbenos y coordinamos el diagnóstico en tu hogar." label="Solicitar servicio" wa="lavadoras" />
+  <OtherServices current="lavadoras" />
+</Layout>

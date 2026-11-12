@@ -1,0 +1,54 @@
+---
+import { link, stripBase } from '../config/paths.js';
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import { company } from '../config/company.js';
+import { whatsappUrl } from '../config/contact.js';
+import { mainNav, services } from '../config/services.js';
+
+const { wa = 'general' } = Astro.props;
+const current = stripBase(Astro.url.pathname);
+const isCurrent = (href) => (href === '/' ? current === '/' : current.startsWith(href));
+const servicesActive = current === '/servicios/' || services.some((s) => current.startsWith(s.path));
+---
+<header class="site-header" data-header>
+  <div class="container nav">
+    <a class="nav__logo" href={link('/')} aria-label={`${company.name}, ir al inicio`}><Logo /></a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú" data-nav-toggle>
+      <span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+
+    <nav class="nav__menu" id="nav-menu" aria-label="Principal" data-nav-menu>
+      <ul class="nav__list">
+        {mainNav.map((item) =>
+          item.dropdown ? (
+            <li class="nav__item nav__item--sub" data-dropdown>
+              <a class:list={['nav__link', { 'is-active': servicesActive }]} href={link(item.href)} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a>
+              <button class="nav__chevron" type="button" aria-expanded="false" aria-controls="nav-services" aria-label="Mostrar servicios" data-dropdown-toggle>
+                <Icon name="chevron-down" size={17} strokeWidth={2.2} />
+              </button>
+              <div class="dropdown" id="nav-services">
+                <ul class="dropdown__list">
+                  {services.map((s) => (
+                    <li>
+                      <a class="dropdown__link" href={link(s.path)} aria-current={isCurrent(s.path) ? 'page' : undefined}>
+                        <span class="icon-tile icon-tile--sm"><Icon name={s.icon} size={20} /></span>
+                        <span><strong>{s.name}</strong><small>{s.menuHint}</small></span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ) : (
+            <li class="nav__item">
+              <a class:list={['nav__link', { 'is-active': isCurrent(item.href) }]} href={link(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+            </li>
+          ),
+        )}
+      </ul>
+      <a class="btn btn--primary nav__cta" href={whatsappUrl(wa)} target="_blank" rel="noopener"><span>Solicitar servicio</span></a>
+    </nav>
+  </div>
+</header>

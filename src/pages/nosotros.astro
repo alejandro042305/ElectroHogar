@@ -1,0 +1,96 @@
+---
+import BenefitGrid from '../components/BenefitGrid.astro';
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import Checklist from '../components/Checklist.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import SplitBlock from '../components/SplitBlock.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
+import { company } from '../config/company.js';
+import { breadcrumbSchema } from '../config/schema.js';
+import { services } from '../config/services.js';
+import Layout from '../layouts/Layout.astro';
+
+const crumbs = [{ label: 'Inicio', href: '/' }, { label: 'Nosotros', href: '/nosotros/' }];
+
+const commitment = [
+  { icon: 'clock', title: 'Soluciones oportunas', text: 'Buscamos dar una respuesta oportuna a cada solicitud, según disponibilidad.' },
+  { icon: 'handshake', title: 'Atención responsable', text: 'Atendemos cada servicio con profesionalismo y compromiso.' },
+  { icon: 'heart-handshake', title: 'Acompañamiento técnico', text: 'Te orientamos con claridad sobre el estado de tu equipo.' },
+  { icon: 'eye', title: 'Procesos transparentes', text: 'Te explicamos con claridad lo que encontramos y lo que se debe hacer.' },
+];
+---
+<Layout
+  title={`Nosotros: servicio técnico independiente en Bogotá | ${company.name}`}
+  description={`${company.name} es una empresa independiente especializada en diagnóstico, mantenimiento y reparación de electrodomésticos en Bogotá y alrededores.`}
+  schema={[breadcrumbSchema(crumbs)]}
+>
+  <PageHero
+    title={`Conoce ${company.name}`}
+    text={company.description}
+    image="tecnico-nevera"
+    alt="Técnico realizando mantenimiento a una nevera en un hogar"
+    position="50% 40%"
+    icon="house"
+    ctaLabel="Hablar con nosotros"
+    breadcrumbs={crumbs}
+  />
+
+  <SplitBlock
+    eyebrow="Quiénes somos"
+    title="Atención técnica clara en tu hogar"
+    image="tecnico-lavadora-superior"
+    alt="Técnico trabajando en una lavadora de carga superior en un hogar"
+    position="45% 40%"
+  >
+    <p>Trabajamos con atención técnica a domicilio para diferentes tipos de equipos y múltiples marcas, ofreciendo soporte técnico con atención clara y procesos transparentes.</p>
+    <p>Nuestro objetivo es brindar soluciones oportunas, atención responsable y acompañamiento técnico a nuestros clientes.</p>
+    <p>Contamos con personal técnico capacitado y canales de atención para programación de servicios y soporte.</p>
+  </SplitBlock>
+
+  <SplitBlock
+    gray
+    reverse
+    eyebrow="Nuestra experiencia"
+    title={`${company.yearsOfExperience} años cuidando electrodomésticos`}
+    image="diagnostico-cableado"
+    alt="Técnico revisando con un destornillador el cableado de un equipo"
+    position="50% 50%"
+  >
+    <p>Durante {company.yearsOfExperience} años hemos atendido familias en Bogotá y sus alrededores, con soluciones técnicas para diferentes tipos de electrodomésticos.</p>
+    <p>Somos un servicio técnico independiente: atendemos múltiples marcas sin representar oficialmente a ninguna de ellas.</p>
+  </SplitBlock>
+
+  <section class="section">
+    <div class="container split">
+      <div data-reveal>
+        <p class="eyebrow">Nuestra forma de trabajar</p>
+        <h2>Un proceso sencillo y transparente</h2>
+      </div>
+      <div data-reveal>
+        <Checklist items={[
+          'Escuchamos lo que ocurre con tu equipo.',
+          'Coordinamos contigo la fecha y el horario de la visita.',
+          'Realizamos el diagnóstico en tu hogar.',
+          'Te entregamos la solución y nuestras recomendaciones.',
+        ]} />
+        <div class="btn-row"><Button href="/contacto/" variant="outline">Ir a contacto</Button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gray">
+    <div class="container">
+      <SectionHeading eyebrow="Nuestros servicios" title="Lo que hacemos por tu hogar" />
+      <div class="service-grid">
+        {services.map((service, i) => <ServiceCard service={service} delay={(i % 3) * 80} />)}
+      </div>
+    </div>
+  </section>
+
+  <BenefitGrid eyebrow="Nuestro compromiso" title="Nuestro compromiso con el cliente" items={commitment} lavender />
+  <WhyChooseUs title="Por qué elegirnos" variant="white" />
+  <CTASection />
+</Layout>

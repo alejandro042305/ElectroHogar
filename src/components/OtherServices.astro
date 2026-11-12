@@ -1,0 +1,25 @@
+---
+import { link } from '../config/paths.js';
+import Icon from './Icon.astro';
+import { services } from '../config/services.js';
+const { current } = Astro.props;
+---
+<section class="section section--gray">
+  <div class="container">
+    <div class="section-heading" data-reveal>
+      <p class="eyebrow">Otros servicios</p>
+      <h2>También cuidamos el resto de tus equipos</h2>
+    </div>
+    <ul class="other-services">
+      {services.filter((s) => s.key !== current).map((s) => (
+        <li data-reveal>
+          <a href={link(s.path)}>
+            <span class="icon-tile"><Icon name={s.icon} size={22} /></span>
+            <strong>{s.name}</strong>
+            <Icon name="arrow-right" size={18} />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

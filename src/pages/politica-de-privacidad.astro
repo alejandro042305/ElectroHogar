@@ -1,0 +1,46 @@
+---
+import { company } from '../config/company.js';
+import { contact, emailHref } from '../config/contact.js';
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title={`Política de privacidad | ${company.name}`}
+  description={`Conoce cómo ${company.name} recopila y utiliza los datos personales suministrados por usuarios y clientes.`}
+>
+  <section class="page-title">
+    <div class="container">
+      <h1>Política de privacidad</h1>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 40px">
+    <div class="container legal">
+      <p>En {company.name} respetamos la privacidad de nuestros usuarios y clientes. La información recopilada a través de formularios, llamadas, WhatsApp o correo electrónico se utiliza únicamente para brindar información, cotizaciones, programación de servicios técnicos y atención al cliente.</p>
+
+      <h2>Información que podemos recopilar</h2>
+      <ul>
+        <li>Nombre.</li>
+        <li>Número telefónico.</li>
+        <li>Correo electrónico.</li>
+        <li>Dirección del servicio.</li>
+      </ul>
+      <p>Esta información es utilizada exclusivamente para contacto comercial y prestación del servicio solicitado.</p>
+
+      <h2>Uso compartido de los datos</h2>
+      <p>Los datos personales suministrados por los usuarios no serán vendidos ni compartidos con terceros ajenos a la operación del servicio.</p>
+      <p>Cuando decides enviar tu solicitud por WhatsApp o correo electrónico, la comunicación se realiza a través de esas plataformas y se rige también por sus propias condiciones.</p>
+
+      <h2>Cookies y herramientas de análisis</h2>
+      <p>Nuestro sitio puede utilizar cookies y herramientas de análisis para mejorar la experiencia del usuario y optimizar nuestros servicios.</p>
+
+      <h2>Actualización o eliminación de datos</h2>
+      <p>Si deseas actualizar o eliminar tu información, puedes solicitarlo a través de nuestros canales de contacto.</p>
+
+      <h2>Contacto</h2>
+      <p>
+        Correo electrónico: <a href={emailHref}>{contact.email}</a><br />
+        Teléfono: <a href={contact.phoneHref}>{contact.phoneDisplay}</a><br />
+        {company.address.city}, {company.address.country}
+      </p>
+    </div>
+  </section>
+</Layout>

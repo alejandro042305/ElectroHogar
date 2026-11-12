@@ -1,0 +1,85 @@
+---
+import { link } from '../config/paths.js';
+import BenefitGrid from '../components/BenefitGrid.astro';
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import OtherServices from '../components/OtherServices.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SplitBlock from '../components/SplitBlock.astro';
+import { company } from '../config/company.js';
+import { breadcrumbSchema, serviceSchema } from '../config/schema.js';
+import Layout from '../layouts/Layout.astro';
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: '/servicios/' },
+  { label: 'Neveras', href: '/neveras/' },
+];
+const description =
+  'Servicio técnico de neveras en Bogotá: reparación y mantenimiento preventivo de neveras, nevecones, heladeras y refrigeradores a domicilio, con garantía.';
+
+const tasks = [
+  'Limpieza externa y de la condensadora.',
+  'Calibración de temperatura.',
+  'Ajuste de componentes.',
+  'Limpieza de evaporador y motoventilador.',
+  'Verificación del funcionamiento del sistema eléctrico.',
+  'Revisión del funcionamiento de cojinetes del motor, ventilador, evaporador y condensador.',
+  'Comprobación del consumo de amperaje del equipo.',
+];
+
+const benefits = [
+  { icon: 'snowflake', title: 'Alimentos siempre frescos', text: 'Una temperatura bien calibrada ayuda a conservarlos.' },
+  { icon: 'search-check', title: 'Fallas detectadas a tiempo', text: 'La revisión de componentes permite anticipar problemas.' },
+  { icon: 'gauge', title: 'Funcionamiento eficiente', text: 'Componentes limpios y ajustados trabajan mejor.' },
+  { icon: 'timer', title: 'Mayor vida útil', text: 'El cuidado periódico ayuda a prolongar la vida de tu equipo.' },
+];
+---
+<Layout
+  title={`Reparación y mantenimiento de neveras en Bogotá | ${company.name}`}
+  description={description}
+  wa="neveras"
+  schema={[serviceSchema({ name: 'Reparación y mantenimiento de neveras', description, path: '/neveras/' }), breadcrumbSchema(crumbs)]}
+>
+  <PageHero
+    title="Servicio técnico especializado en neveras y nevecones"
+    text="Conserva tus alimentos siempre frescos con servicios profesionales de reparación y mantenimiento."
+    image="tecnico-nevera"
+    alt="Técnico limpiando con un cepillo el condensador trasero de una nevera en una cocina"
+    position="55% 40%"
+    icon="refrigerator"
+    wa="neveras"
+    breadcrumbs={crumbs}
+  />
+
+  <SplitBlock
+    eyebrow="Reparación"
+    title="Reparación de neveras"
+    image="nevecon"
+    alt="Nevecón de dos puertas con dispensador de agua en una cocina moderna"
+    position="30% 50%"
+  >
+    <p>Especialistas en reparación de neveras, nevecones, heladeras y refrigeradores. Trabajamos equipos horizontales y verticales con repuestos originales y garantía.</p>
+    <p>También realizamos la <strong>instalación de neveras</strong> y el <a href={link('/filtros-de-agua/')}>cambio de filtros de agua</a>.</p>
+    <div class="btn-row"><Button wa="neveras">Solicitar reparación</Button></div>
+  </SplitBlock>
+
+  <section class="section section--gray">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Mantenimiento"
+        title="Mantenimiento preventivo de neveras y nevecones"
+        text="Realizamos mantenimiento preventivo para neveras de un cuerpo y nevecones de dos puertas verticales. Esto es lo que incluye:"
+      />
+      <ol class="task-grid">
+        {tasks.map((task) => <li class="task" data-reveal>{task}</li>)}
+      </ol>
+    </div>
+  </section>
+
+  <BenefitGrid eyebrow="Beneficios" title="Por qué hacer mantenimiento preventivo" items={benefits} lavender />
+
+  <CTASection title="Agenda la visita para tu nevera" text="Cuéntanos qué le ocurre a tu equipo y coordinamos la visita técnica." label="Solicitar una visita" wa="neveras" />
+  <OtherServices current="neveras" />
+</Layout>

@@ -1,0 +1,16 @@
+---
+import Photo from './Photo.astro';
+const { eyebrow, title, image, alt, position, reverse = false, gray = false, id } = Astro.props;
+---
+<section class:list={['section', { 'section--gray': gray }]} id={id}>
+  <div class:list={['container', 'split', { 'split--reverse': reverse }]}>
+    <div class="media split__media" data-reveal>
+      <Photo name={image} alt={alt} position={position} />
+    </div>
+    <div class="split__text" data-reveal>
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h2>{title}</h2>
+      <div class="prose"><slot /></div>
+    </div>
+  </div>
+</section>

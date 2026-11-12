@@ -1,0 +1,92 @@
+---
+import { link } from '../config/paths.js';
+import Icon from './Icon.astro';
+import { contact } from '../config/contact.js';
+
+const serviceTypes = ['Reparación', 'Mantenimiento', 'Instalación', 'Cambio de filtro', 'Otro'];
+const appliances = ['Nevera o nevecón', 'Lavadora', 'Lavasecadora', 'Secadora', 'Aire acondicionado', 'Filtro de agua', 'Otro'];
+const schedules = ['Mañana', 'Tarde', 'Cualquier horario'];
+---
+<form
+  class="form"
+  novalidate
+  data-contact-form
+  data-endpoint={contact.formEndpoint}
+  data-whatsapp={contact.whatsappNumber}
+  data-email={contact.email}
+>
+  <div class="form__grid">
+    <div class="field">
+      <label for="f-name">Nombre completo <span aria-hidden="true">*</span></label>
+      <input id="f-name" name="nombre" type="text" autocomplete="name" required aria-describedby="f-name-e" />
+      <p class="field__error" id="f-name-e"></p>
+    </div>
+    <div class="field">
+      <label for="f-phone">Número de teléfono <span aria-hidden="true">*</span></label>
+      <input id="f-phone" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="300 123 4567" required aria-describedby="f-phone-e" />
+      <p class="field__error" id="f-phone-e"></p>
+    </div>
+    <div class="field">
+      <label for="f-email">Correo electrónico <span aria-hidden="true">*</span></label>
+      <input id="f-email" name="correo" type="email" autocomplete="email" required aria-describedby="f-email-e" />
+      <p class="field__error" id="f-email-e"></p>
+    </div>
+    <div class="field">
+      <label for="f-service">Tipo de servicio <span aria-hidden="true">*</span></label>
+      <select id="f-service" name="servicio" required aria-describedby="f-service-e">
+        <option value="">Selecciona una opción</option>
+        {serviceTypes.map((o) => <option>{o}</option>)}
+      </select>
+      <p class="field__error" id="f-service-e"></p>
+    </div>
+    <div class="field">
+      <label for="f-appliance">Tipo de electrodoméstico <span aria-hidden="true">*</span></label>
+      <select id="f-appliance" name="electrodomestico" required aria-describedby="f-appliance-e">
+        <option value="">Selecciona una opción</option>
+        {appliances.map((o) => <option>{o}</option>)}
+      </select>
+      <p class="field__error" id="f-appliance-e"></p>
+    </div>
+    <div class="field">
+      <label for="f-brand">Marca del equipo (opcional)</label>
+      <input id="f-brand" name="marca" type="text" autocomplete="off" />
+    </div>
+    <div class="field field--full">
+      <label for="f-problem">Descripción del problema <span aria-hidden="true">*</span></label>
+      <textarea id="f-problem" name="descripcion" rows="4" required aria-describedby="f-problem-e"></textarea>
+      <p class="field__error" id="f-problem-e"></p>
+    </div>
+    <div class="field">
+      <label for="f-address">Dirección o municipio <span aria-hidden="true">*</span></label>
+      <input id="f-address" name="direccion" type="text" autocomplete="street-address" required aria-describedby="f-address-e" />
+      <p class="field__error" id="f-address-e"></p>
+    </div>
+    <div class="field">
+      <label for="f-schedule">Horario preferido de contacto <span aria-hidden="true">*</span></label>
+      <select id="f-schedule" name="horario" required aria-describedby="f-schedule-e">
+        <option value="">Selecciona una opción</option>
+        {schedules.map((o) => <option>{o}</option>)}
+      </select>
+      <p class="field__error" id="f-schedule-e"></p>
+    </div>
+    <div class="field field--full field--check">
+      <label>
+        <input id="f-privacy" name="privacidad" type="checkbox" required aria-describedby="f-privacy-e" />
+        <span>Acepto la <a href={link('/politica-de-privacidad/')} target="_blank" rel="noopener">política de privacidad</a> y autorizo el tratamiento de mis datos para atender esta solicitud. <span aria-hidden="true">*</span></span>
+      </label>
+      <p class="field__error" id="f-privacy-e"></p>
+    </div>
+    <div class="field--trap" aria-hidden="true">
+      <label for="f-web">No llenar este campo</label>
+      <input id="f-web" name="sitio_web" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+  </div>
+
+  <button class="btn btn--primary btn--block" type="submit" data-submit>
+    <span class="btn__spinner" aria-hidden="true"><Icon name="loader-circle" size={20} /></span>
+    <span data-submit-label>{contact.formEndpoint ? 'Enviar solicitud' : 'Enviar solicitud por WhatsApp'}</span>
+  </button>
+  <div class="form__status" role="status" aria-live="polite" tabindex="-1" data-status hidden></div>
+</form>
+
+<script src="../scripts/contact-form.js"></script>

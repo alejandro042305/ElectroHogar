@@ -1,0 +1,12 @@
+---
+import Icon from './Icon.astro';
+const { items, columns = 1 } = Astro.props;
+---
+<ul class:list={['checklist', { 'checklist--two': columns === 2 }]}>
+  {items.map((item) => (
+    <li>
+      <span class="checklist__mark"><Icon name="check" size={15} strokeWidth={2.6} /></span>
+      <span>{item}</span>
+    </li>
+  ))}
+</ul>

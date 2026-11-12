@@ -1,0 +1,46 @@
+:root {
+  /* Paleta oficial */
+  --purple: #7c3aed;
+  --purple-dark: #6d28d9;
+  --purple-soft: #a78bfa;
+  --lavender: #ede9fe;
+  --gray-100: #f3f4f6;
+  --gray-800: #1f2937;
+  --gray-500: #6b7280;
+  --white: #ffffff;
+
+  /* Derivados para cumplir contraste AA sobre fondos claros tintados y oscuros */
+  --gray-600: #4b5563;
+  --gray-200: #e5e7eb;
+  --gray-900: #111827;
+  --on-dark-muted: #d1d5db;
+  --whatsapp: #25d366;
+  --error: #b91c1c;
+  --success: #166534;
+
+  --font-title: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --container: 1200px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --section: clamp(64px, 8vw, 112px);
+  --header-h: 72px;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --notch: 64px;
+
+  --shadow-sm: 0 1px 2px rgb(31 41 55 / 0.06), 0 2px 8px rgb(31 41 55 / 0.04);
+  --shadow: 0 8px 28px rgb(31 41 55 / 0.08);
+  --shadow-lg: 0 20px 50px rgb(31 41 55 / 0.14);
+
+  --ease: cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-h: 64px;
+    --notch: 54px;
+  }
+}

@@ -1,0 +1,27 @@
+---
+import CTASection from '../components/CTASection.astro';
+import Coverage from '../components/Coverage.astro';
+import Hero from '../components/Hero.astro';
+import Highlights from '../components/Highlights.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import Testimonials from '../components/Testimonials.astro';
+import TrustBar from '../components/TrustBar.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
+import { company } from '../config/company.js';
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title={`${company.name} | Servicio técnico de electrodomésticos en Bogotá`}
+  description="Reparación, mantenimiento e instalación de neveras, lavadoras, secadoras, aires acondicionados y filtros de agua a domicilio en Bogotá y municipios cercanos."
+>
+  <Hero />
+  <TrustBar />
+  <ServiceGrid />
+  <Highlights />
+  <WhyChooseUs />
+  <ProcessSteps />
+  <Testimonials />
+  <Coverage />
+  <CTASection flush />
+</Layout>

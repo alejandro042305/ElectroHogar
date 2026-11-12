@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import { processSteps } from '../config/content.js';
+---
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-heading section-heading--center" data-reveal>
+      <p class="eyebrow eyebrow--dark">Cómo funciona</p>
+      <h2>Solicitar tu servicio es muy fácil</h2>
+    </div>
+    <ol class="steps">
+      {processSteps.map((step, i) => (
+        <li class="step" data-reveal style={`--delay:${i * 90}ms`}>
+          <div class="step__top">
+            <span class="step__number" aria-hidden="true">{i + 1}</span>
+            <span class="step__line" aria-hidden="true"></span>
+            <Icon name={step.icon} size={22} />
+          </div>
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+---
+import { link } from '../config/paths.js';
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import Checklist from '../components/Checklist.astro';
+import Photo from '../components/Photo.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import { company } from '../config/company.js';
+import { breadcrumbSchema } from '../config/schema.js';
+import { services } from '../config/services.js';
+import Layout from '../layouts/Layout.astro';
+
+const crumbs = [{ label: 'Inicio', href: '/' }, { label: 'Servicios', href: '/servicios/' }];
+---
+<Layout
+  title={`Servicios técnicos a domicilio en Bogotá | ${company.name}`}
+  description="Conoce nuestros servicios de reparación, mantenimiento e instalación de neveras, lavadoras, secadoras, aires acondicionados y filtros de agua en Bogotá y alrededores."
+  schema={[breadcrumbSchema(crumbs)]}
+>
+  <section class="page-title">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href={link('/')}>Inicio</a></li>
+          <li><span aria-current="page">Servicios</span></li>
+        </ol>
+      </nav>
+      <h1>Servicios técnicos para tu hogar</h1>
+      <p>Diagnóstico, reparación, instalación y mantenimiento preventivo de electrodomésticos, con atención a domicilio en {company.coverage}.</p>
+    </div>
+  </section>
+
+  <section class="section section--gray" style="padding-top: 0">
+    <div class="container service-rows">
+      {services.map((s) => (
+        <article class="service-row" data-reveal>
+          <div class="media">
+            <Photo name={s.image} alt={s.imageAlt} position={s.imagePosition} sizes="(max-width: 760px) 100vw, 40vw" />
+          </div>
+          <div class="service-row__body">
+            <h2>{s.longName}</h2>
+            <p>{s.short}</p>
+            <Checklist items={s.offers} columns={2} />
+            <div class="btn-row">
+              <Button href={s.path} variant="outline">Conocer servicio</Button>
+              <Button wa={s.wa}>Solicitar servicio</Button>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <ProcessSteps />
+  <CTASection />
+</Layout>

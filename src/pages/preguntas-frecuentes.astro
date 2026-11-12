@@ -1,0 +1,35 @@
+---
+import { link } from '../config/paths.js';
+import CTASection from '../components/CTASection.astro';
+import FAQ from '../components/FAQ.astro';
+import { company } from '../config/company.js';
+import { faqs } from '../config/content.js';
+import { breadcrumbSchema, faqSchema } from '../config/schema.js';
+import Layout from '../layouts/Layout.astro';
+
+const crumbs = [{ label: 'Inicio', href: '/' }, { label: 'Preguntas frecuentes', href: '/preguntas-frecuentes/' }];
+---
+<Layout
+  title={`Preguntas frecuentes sobre servicio técnico | ${company.name}`}
+  description="Resuelve tus dudas sobre visitas técnicas, garantía, filtros de agua, atención a domicilio y cómo agendar tu servicio en Bogotá y alrededores."
+  schema={[faqSchema(faqs), breadcrumbSchema(crumbs)]}
+>
+  <section class="page-title">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href={link('/')}>Inicio</a></li>
+          <li><span aria-current="page">Preguntas frecuentes</span></li>
+        </ol>
+      </nav>
+      <h1>Preguntas frecuentes</h1>
+      <p>Las dudas más comunes sobre nuestros servicios, filtros, garantía y atención a domicilio.</p>
+    </div>
+  </section>
+
+  <section class="section section--gray" style="padding-top: 8px">
+    <div class="container"><FAQ /></div>
+  </section>
+
+  <CTASection title="¿Tienes otra pregunta?" text="Escríbenos y con gusto te ayudamos." />
+</Layout>

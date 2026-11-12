@@ -1,0 +1,20 @@
+---
+import { link } from '../config/paths.js';
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+const { service, sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw', headingLevel = 'h3', delay = 0 } = Astro.props;
+const Heading = headingLevel;
+---
+<article class="service-card" data-reveal style={`--delay:${delay}ms`}>
+  <div class="media service-card__media">
+    <Photo name={service.image} alt={service.imageAlt} sizes={sizes} position={service.imagePosition} />
+    <span class="notch"><span class="icon-tile icon-tile--solid"><Icon name={service.icon} size={22} /></span></span>
+  </div>
+  <div class="service-card__body">
+    <Heading>{service.name}</Heading>
+    <p>{service.short}</p>
+    <a class="link-arrow" href={link(service.path)} aria-label={`Conocer servicio de ${service.name.toLowerCase()}`}>
+      Conocer servicio <Icon name="arrow-right" size={18} />
+    </a>
+  </div>
+</article>

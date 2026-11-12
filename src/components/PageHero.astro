@@ -1,0 +1,36 @@
+---
+import { link } from '../config/paths.js';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+
+const { title, text, image, alt, position, icon, wa = 'general', ctaLabel = 'Solicitar servicio', breadcrumbs = [], eyebrow } = Astro.props;
+---
+<section class="page-hero">
+  <div class="container page-hero__grid">
+    <div class="page-hero__copy">
+      {breadcrumbs.length > 0 && (
+        <nav class="breadcrumbs" aria-label="Ruta de navegación">
+          <ol>
+            {breadcrumbs.map((crumb, i) => (
+              <li>
+                {i < breadcrumbs.length - 1 ? <a href={link(crumb.href)}>{crumb.label}</a> : <span aria-current="page">{crumb.label}</span>}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      <p class="page-hero__lead">{text}</p>
+      <div class="btn-row">
+        <Button wa={wa}>{ctaLabel}</Button>
+        <slot name="secondary" />
+      </div>
+    </div>
+    <div class="media page-hero__media">
+      <Photo name={image} alt={alt} sizes="(max-width: 900px) 100vw, 50vw" position={position} priority />
+      {icon && <span class="notch notch--gray"><span class="icon-tile icon-tile--solid"><Icon name={icon} size={24} /></span></span>}
+    </div>
+  </div>
+</section>

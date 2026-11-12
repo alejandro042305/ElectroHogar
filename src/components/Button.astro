@@ -1,0 +1,24 @@
+---
+import { link } from '../config/paths.js';
+import Icon from './Icon.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { whatsappUrl } from '../config/contact.js';
+
+/**
+ * Botón-enlace. `wa` abre WhatsApp con el mensaje de esa clave;
+ * `href` navega a una página o a tel:/mailto:.
+ */
+const { href, wa, variant = 'primary', icon, block = false, class: className } = Astro.props;
+const url = wa ? whatsappUrl(wa) : link(href);
+const external = Boolean(wa) || /^https?:/.test(url);
+---
+<a
+  class:list={['btn', `btn--${variant}`, { 'btn--block': block }, className]}
+  href={url}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener' : undefined}
+>
+  {wa && <WhatsAppIcon size={20} />}
+  {icon && <Icon name={icon} size={20} />}
+  <span><slot /></span>
+</a>

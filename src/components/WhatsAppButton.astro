@@ -1,0 +1,9 @@
+---
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { whatsappUrl } from '../config/contact.js';
+const { wa = 'general' } = Astro.props;
+---
+<a class="wa-float" href={whatsappUrl(wa)} target="_blank" rel="noopener" aria-label="¿Necesitas ayuda? Escríbenos por WhatsApp">
+  <span class="wa-float__label">¿Necesitas ayuda?</span>
+  <span class="wa-float__icon"><WhatsAppIcon size={28} /></span>
+</a>

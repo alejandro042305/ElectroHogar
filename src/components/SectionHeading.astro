@@ -1,0 +1,9 @@
+---
+const { eyebrow, title, text, align = 'left', level = 'h2', id } = Astro.props;
+const Tag = level;
+---
+<div class:list={['section-heading', { 'section-heading--center': align === 'center' }]} data-reveal>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <Tag id={id}>{title}</Tag>
+  {text && <p class="section-heading__text">{text}</p>}
+</div>

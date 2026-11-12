@@ -1,0 +1,50 @@
+---
+import { link } from '../config/paths.js';
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import { company, fullAddress } from '../config/company.js';
+import { contact, emailHref, mapsUrl } from '../config/contact.js';
+import { services } from '../config/services.js';
+
+const info = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Nosotros', href: '/nosotros/' },
+  { label: 'Preguntas frecuentes', href: '/preguntas-frecuentes/' },
+  { label: 'Contacto', href: '/contacto/' },
+];
+---
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <a href={link('/')} aria-label={`${company.name}, ir al inicio`}><Logo dark /></a>
+      <p>Empresa independiente especializada en diagnóstico, mantenimiento y reparación de electrodomésticos en {company.coverage}.</p>
+    </div>
+    <div>
+      <h2 class="site-footer__title">Servicios</h2>
+      <ul class="site-footer__links">
+        {services.map((s) => <li><a href={link(s.path)}>{s.name}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <h2 class="site-footer__title">Información</h2>
+      <ul class="site-footer__links">
+        {info.map((l) => <li><a href={link(l.href)}>{l.label}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <h2 class="site-footer__title">Contacto</h2>
+      <ul class="site-footer__contact">
+        <li><Icon name="phone" size={18} /><a href={contact.phoneHref}>{contact.phoneDisplay}</a></li>
+        <li><Icon name="mail" size={18} /><a href={emailHref}>{contact.email}</a></li>
+        <li><Icon name="map-pin" size={18} /><a href={mapsUrl} target="_blank" rel="noopener">{fullAddress}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container site-footer__bottom">
+    <p>© {company.copyrightYear} {company.name}. Todos los derechos reservados.</p>
+    <ul>
+      <li><a href={link('/politica-de-privacidad/')}>Política de privacidad</a></li>
+      <li><a href={link('/terminos-y-condiciones/')}>Términos y condiciones</a></li>
+    </ul>
+  </div>
+</footer>

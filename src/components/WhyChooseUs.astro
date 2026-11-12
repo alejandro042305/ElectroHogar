@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+import SectionHeading from './SectionHeading.astro';
+import { company } from '../config/company.js';
+import { whyChooseUs } from '../config/content.js';
+const { title = `¿Por qué confiar en ${company.name}?`, variant = 'gray' } = Astro.props;
+---
+<section class:list={['section', { 'section--gray': variant === 'gray' }]}>
+  <div class="container">
+    <SectionHeading eyebrow="Por qué elegirnos" title={title} align="center" />
+    <ul class="feature-grid">
+      {whyChooseUs.map((item, i) => (
+        <li class="feature-card" data-reveal style={`--delay:${(i % 3) * 70}ms`}>
+          <span class="icon-tile"><Icon name={item.icon} size={24} /></span>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

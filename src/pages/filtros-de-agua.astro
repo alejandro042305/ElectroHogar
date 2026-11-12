@@ -1,0 +1,107 @@
+---
+import BenefitGrid from '../components/BenefitGrid.astro';
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import Checklist from '../components/Checklist.astro';
+import OtherServices from '../components/OtherServices.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { company } from '../config/company.js';
+import { breadcrumbSchema, serviceSchema } from '../config/schema.js';
+import Layout from '../layouts/Layout.astro';
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: '/servicios/' },
+  { label: 'Filtros de agua', href: '/filtros-de-agua/' },
+];
+const description =
+  'Cambio e instalación de filtros de agua para neveras en Bogotá, a domicilio. Atendemos filtros LG, Samsung y Whirlpool e instalamos los que ya compraste.';
+
+const serviceBenefits = [
+  { icon: 'house', title: 'Servicio a domicilio' },
+  { icon: 'wrench', title: 'Instalación profesional' },
+  { icon: 'filter', title: 'Filtros originales y compatibles' },
+  { icon: 'shield-check', title: 'Garantía en instalación' },
+];
+
+const whyChange = [
+  { icon: 'glass-water', title: 'Mejor sabor del agua' },
+  { icon: 'filter', title: 'Eliminación de impurezas' },
+  { icon: 'snowflake', title: 'Hielo de mejor calidad' },
+  { icon: 'shield-check', title: 'Protección del sistema de dispensación' },
+  { icon: 'timer', title: 'Mayor vida útil del sistema de refrigeración' },
+];
+---
+<Layout
+  title={`Cambio de filtros de agua para neveras en Bogotá | ${company.name}`}
+  description={description}
+  wa="filtros"
+  schema={[serviceSchema({ name: 'Cambio e instalación de filtros de agua para neveras', description, path: '/filtros-de-agua/' }), breadcrumbSchema(crumbs)]}
+>
+  <PageHero
+    title="Instalación y cambio de filtros de agua para neveras"
+    text="Disfruta agua fresca y un sistema de filtración en óptimas condiciones."
+    image="nevecon"
+    alt="Nevecón con dispensador de agua en la puerta, en una cocina moderna"
+    position="26% 45%"
+    icon="droplets"
+    wa="filtros"
+    ctaLabel="Solicitar cambio de filtro"
+    breadcrumbs={crumbs}
+  />
+
+  <BenefitGrid eyebrow="Nuestro servicio" title="Cambio e instalación de filtros" items={serviceBenefits} />
+
+  <section class="section section--gray">
+    <div class="container split">
+      <div class="filter-visual" data-reveal>
+        <div class="filter-visual__art">
+          <svg viewBox="0 0 160 260" width="150" role="img" aria-label="Ilustración de un cartucho de filtro de agua">
+            <rect x="52" y="6" width="56" height="26" rx="6" fill="#7C3AED" />
+            <rect x="64" y="0" width="32" height="10" rx="3" fill="#6D28D9" />
+            <rect x="28" y="30" width="104" height="200" rx="18" fill="#fff" stroke="#A78BFA" stroke-width="3" />
+            <g stroke="#A78BFA" stroke-width="3" stroke-linecap="round">
+              <path d="M48 62h64M48 84h64M48 106h64M48 128h64M48 150h64M48 172h64M48 194h64" />
+            </g>
+            <rect x="60" y="228" width="40" height="18" rx="5" fill="#1F2937" />
+            <path d="M80 248s-8 8-8 12h16c0-4-8-12-8-12Z" fill="#7C3AED" />
+          </svg>
+        </div>
+        <div class="media">
+          <Photo name="dispensador-nevecon" alt="Dispensador de agua en la puerta de un nevecón de acero inoxidable" sizes="(max-width: 860px) 50vw, 25vw" />
+        </div>
+      </div>
+      <div class="split__text" data-reveal>
+        <p class="eyebrow">Marcas</p>
+        <h2>Marcas de filtros atendidas</h2>
+        <ul class="brand-list">
+          <li>LG</li>
+          <li>Samsung</li>
+          <li>Whirlpool</li>
+        </ul>
+        <p class="note">{company.name} es un servicio técnico independiente y no representa oficialmente a estas marcas.</p>
+      </div>
+    </div>
+  </section>
+
+  <BenefitGrid eyebrow="Beneficios" title="¿Por qué cambiar el filtro?" items={whyChange} />
+
+  <section class="section section--lavender">
+    <div class="container split" style="align-items: start">
+      <div data-reveal>
+        <SectionHeading eyebrow="Señales" title="¿Cómo saber cuándo cambiar el filtro?" />
+        <Checklist items={['Disminución del flujo de agua.', 'Mal sabor.', 'Mal olor.', 'Hielo de baja calidad.', 'Indicador de filtro encendido.', 'Más de seis meses de uso.']} columns={2} />
+      </div>
+      <div class="feature-card" data-reveal>
+        <h3 style="margin-top: 0">Información adicional</h3>
+        <Checklist items={['Cambio recomendado aproximadamente cada seis meses.', 'Se instalan filtros comprados por el cliente.', 'Se recomienda utilizar filtros originales cuando sea posible.']} />
+        <div class="btn-row"><Button wa="filtros">Solicitar cambio de filtro</Button></div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="¿Ya es hora de cambiar tu filtro?" text="Lo cambiamos en tu hogar, incluso si ya compraste el repuesto." label="Solicitar cambio de filtro" wa="filtros" />
+  <OtherServices current="filtros" />
+</Layout>

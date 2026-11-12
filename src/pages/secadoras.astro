@@ -1,0 +1,69 @@
+---
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import Checklist from '../components/Checklist.astro';
+import OtherServices from '../components/OtherServices.astro';
+import PageHero from '../components/PageHero.astro';
+import SplitBlock from '../components/SplitBlock.astro';
+import { company } from '../config/company.js';
+import { breadcrumbSchema, serviceSchema } from '../config/schema.js';
+import Layout from '../layouts/Layout.astro';
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: '/servicios/' },
+  { label: 'Secadoras', href: '/secadoras/' },
+];
+const description =
+  'Reparación y mantenimiento de secadoras a domicilio en Bogotá: desarme general, lubricación, calibración de gas y limpieza de obstrucciones de motas.';
+---
+<Layout
+  title={`Reparación y mantenimiento de secadoras en Bogotá | ${company.name}`}
+  description={description}
+  wa="secadoras"
+  schema={[serviceSchema({ name: 'Reparación y mantenimiento de secadoras', description, path: '/secadoras/' }), breadcrumbSchema(crumbs)]}
+>
+  <PageHero
+    title="Reparación y mantenimiento de secadoras"
+    text="Mantén tu secadora funcionando correctamente con mantenimiento y reparación especializada."
+    image="secadora-tambor"
+    alt="Puerta de vidrio y tambor de acero de un equipo de secado"
+    position="72% 50%"
+    icon="wind"
+    wa="secadoras"
+    breadcrumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="callout" data-reveal>
+        <div>
+          <p class="eyebrow">Reparación</p>
+          <h2>Reparación de secadoras</h2>
+          <div class="prose">
+            <p>Servicio profesional de reparación de secadoras, con repuestos originales cuando corresponda y garantía sobre los trabajos realizados.</p>
+            <p>También realizamos la <strong>instalación de secadoras</strong> en tu hogar.</p>
+          </div>
+        </div>
+        <Button wa="secadoras">Solicitar reparación</Button>
+      </div>
+    </div>
+  </section>
+
+  <SplitBlock
+    gray
+    reverse
+    eyebrow="Mantenimiento"
+    title="Mantenimiento de secadoras"
+    image="tecnico-lavadora"
+    alt="Técnico trabajando en la parte inferior de un equipo de carga frontal en un hogar"
+    position="72% 60%"
+  >
+    <p>Estos son los procedimientos del mantenimiento:</p>
+    <Checklist items={['Desarme general.', 'Lubricación de poleas.', 'Lubricación del motor.', 'Calibración de gas, cuando corresponda al equipo.', 'Limpieza de obstrucciones de motas.']} />
+    <div class="btn-row"><Button wa="secadoras">Solicitar servicio técnico</Button></div>
+  </SplitBlock>
+
+  <CTASection title="¿Tu secadora no funciona como debería?" text="Contáctanos y solicita tu servicio técnico." label="Solicitar servicio técnico" wa="secadoras" />
+  <OtherServices current="secadoras" />
+</Layout>

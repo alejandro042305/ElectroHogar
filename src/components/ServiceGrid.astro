@@ -1,0 +1,18 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import ServiceCard from './ServiceCard.astro';
+import { company } from '../config/company.js';
+import { services } from '../config/services.js';
+---
+<section class="section section--gray" id="servicios">
+  <div class="container">
+    <SectionHeading
+      eyebrow="Nuestros servicios"
+      title="Soluciones para todos tus electrodomésticos"
+      text={`En ${company.name} conservamos tus electrodomésticos en excelente estado mediante diagnóstico, reparación, instalación y mantenimiento preventivo.`}
+    />
+    <div class="service-grid">
+      {services.map((service, i) => <ServiceCard service={service} delay={(i % 3) * 80} />)}
+    </div>
+  </div>
+</section>

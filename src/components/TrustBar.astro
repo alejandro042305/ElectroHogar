@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+import { trustItems } from '../config/content.js';
+---
+<section class="trust" aria-label="Por qué nos eligen">
+  <div class="container">
+    <ul class="trust__bar" data-reveal>
+      {trustItems.map((item) => (
+        <li>
+          <span class="icon-tile"><Icon name={item.icon} size={22} /></span>
+          <span><strong>{item.title}</strong><small>{item.text}</small></span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

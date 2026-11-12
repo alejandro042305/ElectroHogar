@@ -1,0 +1,71 @@
+---
+import { link } from '../config/paths.js';
+import Button from '../components/Button.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { company, fullAddress } from '../config/company.js';
+import { contact, emailHref, mapsEmbedUrl, mapsUrl } from '../config/contact.js';
+import { breadcrumbSchema } from '../config/schema.js';
+import Layout from '../layouts/Layout.astro';
+
+const crumbs = [{ label: 'Inicio', href: '/' }, { label: 'Contacto', href: '/contacto/' }];
+---
+<Layout
+  title={`Contacto y solicitud de servicio técnico en Bogotá | ${company.name}`}
+  description={`Solicita tu servicio técnico por WhatsApp, teléfono o correo. Atendemos a domicilio en ${company.coverage}. Llámanos al ${contact.phoneDisplay}.`}
+  schema={[breadcrumbSchema(crumbs)]}
+>
+  <section class="page-title">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href={link('/')}>Inicio</a></li>
+          <li><span aria-current="page">Contacto</span></li>
+        </ol>
+      </nav>
+      <h1>Estamos listos para ayudarte</h1>
+      <p>Escríbenos, llámanos o déjanos tu solicitud y coordinamos tu servicio técnico.</p>
+    </div>
+  </section>
+
+  <section class="section section--gray" style="padding-top: 8px">
+    <div class="container contact-grid">
+      <aside class="contact-card">
+        <h2>Datos de contacto</h2>
+        <ul class="contact-list">
+          <li><Icon name="house" size={20} /><div><small>Empresa</small><strong>{company.name}</strong></div></li>
+          <li><Icon name="phone" size={20} /><div><small>Teléfono</small><a href={contact.phoneHref}>{contact.phoneDisplay}</a></div></li>
+          <li><Icon name="mail" size={20} /><div><small>Correo electrónico</small><a href={emailHref}>{contact.email}</a></div></li>
+          <li><Icon name="map-pin" size={20} /><div><small>Dirección</small><a href={mapsUrl} target="_blank" rel="noopener">{fullAddress}</a></div></li>
+          <li><Icon name="navigation" size={20} /><div><small>Cobertura</small><strong>{company.coverage}</strong></div></li>
+        </ul>
+        <div class="contact-actions">
+          <Button wa="general" block>Escribir por WhatsApp</Button>
+          <Button href={contact.phoneHref} variant="outline" icon="phone" block>Llamar ahora</Button>
+          <Button href={emailHref} variant="outline" icon="mail" block>Enviar correo electrónico</Button>
+        </div>
+      </aside>
+      <div>
+        <h2 class="sr-only">Formulario de solicitud</h2>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading eyebrow="Ubicación" title="Dónde estamos" text={fullAddress} />
+      <iframe
+        class="map-frame"
+        src={mapsEmbedUrl}
+        title={`Mapa de la ubicación de ${company.name}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+      <div class="btn-row">
+        <Button href={mapsUrl} variant="outline" icon="map-pin">Abrir en Google Maps</Button>
+      </div>
+    </div>
+  </section>
+</Layout>

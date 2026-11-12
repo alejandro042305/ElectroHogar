@@ -1,0 +1,38 @@
+---
+import { link } from '../config/paths.js';
+import { company } from '../config/company.js';
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title={`Términos y condiciones | ${company.name}`}
+  description={`Términos y condiciones de uso del sitio web y de los servicios técnicos de ${company.name}.`}
+>
+  <section class="page-title">
+    <div class="container">
+      <h1>Términos y condiciones</h1>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 40px">
+    <div class="container legal">
+      <p>{company.name} presta servicios técnicos independientes de diagnóstico, mantenimiento y reparación de electrodomésticos y equipos para el hogar. El uso de este sitio web implica la aceptación de los presentes términos y condiciones.</p>
+
+      <h2>1. Servicios</h2>
+      <p>Los servicios ofrecidos están sujetos a disponibilidad técnica y cobertura geográfica.</p>
+
+      <h2>2. Información del sitio</h2>
+      <p>La información publicada tiene carácter informativo y puede actualizarse sin previo aviso.</p>
+
+      <h2>3. Marcas comerciales</h2>
+      <p>Las marcas mencionadas en este sitio pertenecen a sus respectivos propietarios y son utilizadas únicamente con fines informativos y de referencia técnica. {company.name} es un servicio técnico independiente y no representa oficialmente a las marcas mencionadas, salvo indicación expresa.</p>
+
+      <h2>4. Garantías</h2>
+      <p>Las garantías aplican únicamente sobre servicios y repuestos especificados en la orden de servicio correspondiente.</p>
+
+      <h2>5. Responsabilidad</h2>
+      <p>El usuario es responsable de suministrar información correcta sobre el equipo y la solicitud de servicio.</p>
+
+      <h2>6. Contacto</h2>
+      <p>Para consultas relacionadas con el servicio puedes comunicarte mediante nuestros <a href={link('/contacto/')}>canales oficiales de atención</a>.</p>
+    </div>
+  </section>
+</Layout>

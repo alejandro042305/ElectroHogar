@@ -1,0 +1,19 @@
+---
+import { faqs } from '../config/content.js';
+const { items = faqs } = Astro.props;
+---
+<div class="faq" data-accordion>
+  {items.map((item, i) => (
+    <div class="faq__item" data-accordion-item>
+      <h2 class="faq__heading">
+        <button class="faq__trigger" type="button" id={`faq-q${i}`} aria-expanded="false" aria-controls={`faq-a${i}`} data-accordion-trigger>
+          <span>{item.q}</span>
+          <span class="faq__sign" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="faq__panel" id={`faq-a${i}`} role="region" aria-labelledby={`faq-q${i}`}>
+        <div class="faq__panel-inner"><p>{item.a}</p></div>
+      </div>
+    </div>
+  ))}
+</div>

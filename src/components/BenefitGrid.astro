@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+import SectionHeading from './SectionHeading.astro';
+const { eyebrow, title, text, items, gray = false, lavender = false } = Astro.props;
+---
+<section class:list={['section', { 'section--gray': gray, 'section--lavender': lavender }]}>
+  <div class="container">
+    <SectionHeading eyebrow={eyebrow} title={title} text={text} />
+    <ul class="benefit-grid">
+      {items.map((item, i) => (
+        <li class="benefit" data-reveal style={`--delay:${(i % 4) * 60}ms`}>
+          <span class="icon-tile"><Icon name={item.icon} size={22} /></span>
+          <div>
+            <h3>{item.title}</h3>
+            {item.text && <p>{item.text}</p>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

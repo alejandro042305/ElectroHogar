@@ -1,0 +1,99 @@
+---
+import BenefitGrid from '../components/BenefitGrid.astro';
+import Button from '../components/Button.astro';
+import CTASection from '../components/CTASection.astro';
+import Checklist from '../components/Checklist.astro';
+import OtherServices from '../components/OtherServices.astro';
+import PageHero from '../components/PageHero.astro';
+import SplitBlock from '../components/SplitBlock.astro';
+import { company } from '../config/company.js';
+import { breadcrumbSchema, serviceSchema } from '../config/schema.js';
+import Layout from '../layouts/Layout.astro';
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: '/servicios/' },
+  { label: 'Aires acondicionados', href: '/aires-acondicionados/' },
+];
+const description =
+  'Servicio técnico de aires acondicionados en Bogotá: asesoría, instalación, reparación y mantenimiento de equipos split, portátiles, de ventana y centrales.';
+
+const benefits = [
+  { icon: 'wind', title: 'Aire más limpio', text: 'La limpieza de filtros y serpentines mantiene el equipo en buen estado.' },
+  { icon: 'gauge', title: 'Funcionamiento eficiente', text: 'Un equipo ajustado y calibrado trabaja mejor.' },
+  { icon: 'search-check', title: 'Fallas detectadas a tiempo', text: 'La revisión periódica ayuda a identificar fugas y problemas eléctricos.' },
+  { icon: 'timer', title: 'Mayor vida útil', text: 'El mantenimiento ayuda a prolongar la vida de tu equipo.' },
+];
+---
+<Layout
+  title={`Instalación y reparación de aires acondicionados en Bogotá | ${company.name}`}
+  description={description}
+  wa="aires"
+  schema={[serviceSchema({ name: 'Instalación, reparación y mantenimiento de aires acondicionados', description, path: '/aires-acondicionados/' }), breadcrumbSchema(crumbs)]}
+>
+  <PageHero
+    title="Instalación, reparación y mantenimiento de aires acondicionados"
+    text="Soluciones técnicas para mantener tus equipos funcionando eficientemente."
+    image="aire-serpentin"
+    alt="Primer plano de las aletas metálicas del serpentín de un aire acondicionado"
+    icon="snowflake"
+    wa="aires"
+    breadcrumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="callout" data-reveal>
+        <div>
+          <p class="eyebrow">Asesoría</p>
+          <h2>Venta e instalación</h2>
+          <div class="prose">
+            <p>Si necesitas un nuevo aire acondicionado, te asesoramos en la elección de la mejor opción según tus necesidades y el espacio disponible.</p>
+          </div>
+        </div>
+        <Button wa="aires">Pedir asesoría</Button>
+      </div>
+    </div>
+  </section>
+
+  <SplitBlock
+    gray
+    eyebrow="Reparación"
+    title="Reparación"
+    image="aire-reparacion"
+    alt="Manos de un técnico ajustando con dos llaves una conexión de un sistema de aire acondicionado"
+    position="50% 40%"
+  >
+    <p>Realizamos reparación de aires acondicionados con atención técnica especializada, repuestos adecuados y garantía.</p>
+    <p>Atendemos estos tipos de equipos:</p>
+    <ul class="chips">
+      <li>Tipo split</li>
+      <li>Portátiles</li>
+      <li>De ventana</li>
+      <li>Centrales</li>
+    </ul>
+  </SplitBlock>
+
+  <SplitBlock
+    reverse
+    eyebrow="Mantenimiento"
+    title="Mantenimiento preventivo y correctivo"
+    image="aire-filtro"
+    alt="Mano de un técnico sosteniendo el filtro de una unidad interior de aire acondicionado"
+    position="40% 50%"
+  >
+    <Checklist items={[
+      'Limpieza y desinfección de filtros y serpentines.',
+      'Revisión y ajuste del sistema de ventilación.',
+      'Calibración del termostato.',
+      'Verificación de fugas y nivel de gas refrigerante.',
+      'Lubricación de componentes mecánicos.',
+      'Inspección del sistema eléctrico y consumo energético.',
+    ]} />
+  </SplitBlock>
+
+  <BenefitGrid eyebrow="Beneficios" title="Por qué hacer mantenimiento a tu aire acondicionado" items={benefits} lavender />
+
+  <CTASection title="¿Necesitas ayuda con tu aire acondicionado?" text="Cuéntanos qué necesitas: instalación, reparación o mantenimiento." label="Solicitar servicio" wa="aires" />
+  <OtherServices current="aires" />
+</Layout>

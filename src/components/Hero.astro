@@ -1,0 +1,39 @@
+---
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+import { heroIndicators } from '../config/content.js';
+---
+<section class="hero">
+  <div class="hero__photo">
+    <Photo
+      name="tecnico-lavadora"
+      alt="Técnico reparando la parte inferior de una lavadora de carga frontal en un apartamento"
+      sizes="(max-width: 900px) 100vw, 62vw"
+      position="62% 45%"
+      priority
+    />
+  </div>
+  <svg class="hero__pulse" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 80H380l26-52 34 92 30-68 18 28H1440" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+  </svg>
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow eyebrow--dark">Bogotá y alrededores</p>
+      <h1>Servicio técnico especializado para tu hogar</h1>
+      <p class="hero__lead">
+        Reparamos, instalamos y realizamos mantenimiento de tus electrodomésticos con personal técnico
+        capacitado, atención a domicilio y soluciones confiables.
+      </p>
+      <div class="btn-row">
+        <Button wa="general">Solicitar servicio por WhatsApp</Button>
+        <Button href="/servicios/" variant="ghost-dark">Conocer nuestros servicios</Button>
+      </div>
+      <ul class="hero__indicators">
+        {heroIndicators.map((item) => (
+          <li><Icon name={item.icon} size={19} /><span>{item.label}</span></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,18 @@
+---
+import Button from '../components/Button.astro';
+import { company } from '../config/company.js';
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title={`Página no encontrada | ${company.name}`} description="La página que buscas no existe." noindex>
+  <section class="section">
+    <div class="container" style="max-width: 640px; text-align: center">
+      <p class="eyebrow">Error 404</p>
+      <h1>No encontramos esta página</h1>
+      <p style="margin-top: 14px; color: var(--gray-600)">Puede que el enlace haya cambiado. Vuelve al inicio o revisa nuestros servicios.</p>
+      <div class="btn-row" style="justify-content: center">
+        <Button href="/">Volver al inicio</Button>
+        <Button href="/servicios/" variant="outline">Ver servicios</Button>
+      </div>
+    </div>
+  </section>
+</Layout>

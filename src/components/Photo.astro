@@ -1,0 +1,30 @@
+---
+import { Picture } from 'astro:assets';
+
+/** Imagen responsive en AVIF/WebP a partir de src/assets/images/<name>.jpg */
+const images = import.meta.glob('/src/assets/images/*.jpg', { eager: true, import: 'default' });
+const {
+  name,
+  alt,
+  sizes = '(max-width: 768px) 100vw, 50vw',
+  priority = false,
+  position,
+} = Astro.props;
+const src = images[`/src/assets/images/${name}.jpg`];
+if (!src) throw new Error(`Imagen no encontrada: ${name}`);
+const widths = [420, 640, 960, 1280, 1600].filter((w) => w <= src.width);
+if (!widths.length) widths.push(src.width);
+---
+<Picture
+  src={src}
+  alt={alt}
+  formats={['avif', 'webp']}
+  fallbackFormat="jpg"
+  widths={widths}
+  sizes={sizes}
+  quality={72}
+  loading={priority ? 'eager' : 'lazy'}
+  decoding="async"
+  fetchpriority={priority ? 'high' : undefined}
+  style={position ? `object-position:${position}` : undefined}
+/>
