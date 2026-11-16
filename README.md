@@ -1,6 +1,9 @@
-# ElectroHogar
+# Valtec
 
-Sitio web multipágina de servicio técnico de electrodomésticos en Bogotá y alrededores.
+Sitio web multipágina de Valtec, servicio técnico integral de electrodomésticos en Bogotá y alrededores.
+
+Sitio publicado: <https://alejandro042305.github.io/Valtec/>
+
 Construido con [Astro](https://astro.build): genera HTML estático, por lo que funciona en cualquier hosting.
 
 ## Comandos
@@ -33,8 +36,9 @@ npm test           # pruebas automáticas (requiere npm run build y Google Chrom
 Para reemplazar una foto, guarda la nueva con el mismo nombre de archivo en `.jpg`.
 El sitio genera automáticamente las versiones AVIF y WebP al compilar.
 
-Si cambias el nombre o el logo, ejecuta `node scripts/generate-brand-assets.mjs` para regenerar
-el favicon y la imagen para redes sociales.
+El logo original está en `src/assets/brand/valtec-logo-original.jpg`. Si lo cambias, reemplaza ese archivo
+y ejecuta `node scripts/generate-brand-assets.mjs` para regenerar las versiones del logo, el favicon
+y la imagen para redes sociales.
 
 ## Formulario de contacto
 

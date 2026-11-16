@@ -65,7 +65,7 @@ test('todos los enlaces internos responden', async ({ page, request }) => {
 });
 
 test('WhatsApp: número y mensaje según el servicio', async ({ page }) => {
-  const expected = { '/neveras/': 'mi nevera', '/lavadoras/': 'una lavadora', '/secadoras/': 'una secadora', '/aires-acondicionados/': 'aire acondicionado', '/filtros-de-agua/': 'filtro de agua', '/': 'servicios de ElectroHogar' };
+  const expected = { '/neveras/': 'mi nevera', '/lavadoras/': 'una lavadora', '/secadoras/': 'una secadora', '/aires-acondicionados/': 'aire acondicionado', '/filtros-de-agua/': 'filtro de agua', '/': 'servicios de Valtec' };
   for (const [route, text] of Object.entries(expected)) {
     await page.goto(route);
     const href = await page.locator('.wa-float').getAttribute('href');

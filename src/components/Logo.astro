@@ -1,13 +1,19 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/brand/logo.png';
+import logoDark from '../assets/brand/logo-dark.png';
 import { company } from '../config/company.js';
-const { dark = false, size = 36 } = Astro.props;
-const split = company.name.match(/^(Electro)(.*)$/);
+
+/** Logo de la marca. `dark` usa la versión clara con lema, para fondos oscuros. */
+const { dark = false } = Astro.props;
 ---
-<span class:list={['logo-lockup', { 'logo-lockup--dark': dark }]}>
-  <svg width={size} height={size} viewBox="0 0 40 40" aria-hidden="true">
-    <rect width="40" height="40" rx="11" fill="#7C3AED" />
-    <path d="M7.5 19.6 20 8.5l12.5 11.1V30a2.2 2.2 0 0 1-2.2 2.2H9.7A2.2 2.2 0 0 1 7.5 30Z" fill="#fff" />
-    <path d="M22 13.6 14.8 23h4.7l-1.4 6.6 7.1-9.4h-4.6Z" fill="#7C3AED" />
-  </svg>
-  <span class="logo-word">{split ? <>{split[1]}<b>{split[2]}</b></> : company.name}</span>
-</span>
+<Image
+  class:list={['logo', { 'logo--dark': dark }]}
+  src={dark ? logoDark : logo}
+  alt={company.name}
+  height={dark ? 72 : 46}
+  densities={[1, 2]}
+  format="webp"
+  quality={90}
+  loading="eager"
+/>
