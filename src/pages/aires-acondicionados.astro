@@ -35,34 +35,32 @@ const benefits = [
     title="Instalación, reparación y mantenimiento de aires acondicionados"
     text="Soluciones técnicas para mantener tus equipos funcionando eficientemente."
     image="aire-serpentin"
-    alt="Primer plano de las aletas metálicas del serpentín de un aire acondicionado"
+    alt="Aire acondicionado tipo split instalado en la sala de un apartamento con vista a la ciudad"
+    position="60% 40%"
     icon="snowflake"
     wa="aires"
     breadcrumbs={crumbs}
   />
 
-  <section class="section">
-    <div class="container">
-      <div class="callout" data-reveal>
-        <div>
-          <p class="eyebrow">Asesoría</p>
-          <h2>Venta e instalación</h2>
-          <div class="prose">
-            <p>Si necesitas un nuevo aire acondicionado, te asesoramos en la elección de la mejor opción según tus necesidades y el espacio disponible.</p>
-          </div>
-        </div>
-        <Button wa="aires">Pedir asesoría</Button>
-      </div>
-    </div>
-  </section>
+  <SplitBlock
+    eyebrow="Asesoría"
+    title="Venta e instalación"
+    image="aire-dormitorio"
+    alt="Aire acondicionado tipo split instalado sobre la cama de un dormitorio moderno"
+    position="60% 35%"
+  >
+    <p>Si necesitas un nuevo aire acondicionado, te asesoramos en la elección de la mejor opción según tus necesidades y el espacio disponible.</p>
+    <div class="btn-row"><Button wa="aires">Pedir asesoría</Button></div>
+  </SplitBlock>
 
   <SplitBlock
     gray
+    reverse
     eyebrow="Reparación"
     title="Reparación"
     image="aire-reparacion"
-    alt="Manos de un técnico ajustando con dos llaves una conexión de un sistema de aire acondicionado"
-    position="50% 40%"
+    alt="Técnico revisando con manómetros la unidad exterior de un aire acondicionado en un balcón"
+    position="40% 40%"
   >
     <p>Realizamos reparación de aires acondicionados con atención técnica especializada, repuestos adecuados y garantía.</p>
     <p>Atendemos estos tipos de equipos:</p>
@@ -75,12 +73,11 @@ const benefits = [
   </SplitBlock>
 
   <SplitBlock
-    reverse
     eyebrow="Mantenimiento"
     title="Mantenimiento preventivo y correctivo"
     image="aire-filtro"
-    alt="Mano de un técnico sosteniendo el filtro de una unidad interior de aire acondicionado"
-    position="40% 50%"
+    alt="Técnico retirando el filtro de un aire acondicionado tipo split para limpiarlo"
+    position="45% 35%"
   >
     <Checklist items={[
       'Limpieza y desinfección de filtros y serpentines.',
