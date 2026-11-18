@@ -22,6 +22,14 @@ npm test           # pruebas automáticas (requiere npm run build y Google Chrom
 2. Ejecuta `npm run build`.
 3. Sube el contenido de `dist/` al hosting. Sirve en Netlify, Vercel, Cloudflare Pages o cPanel.
 
+### Hostinger
+
+1. Ejecuta `npm run build` y comprime el **contenido** de `dist/` en un .zip (no la carpeta `dist`).
+2. En hPanel: **Sitios web → Administrar → Administrador de archivos → `public_html`**.
+3. Borra lo que haya dentro de `public_html` (por ejemplo `default.php`), sube el .zip y elige **Extraer**.
+4. Comprueba que `index.html` y `.htaccess` quedaron directamente dentro de `public_html`, y borra el .zip.
+5. En **Seguridad → SSL**, instala el certificado gratuito y activa **Forzar HTTPS**.
+
 ## Dónde cambiar cada cosa
 
 | Qué | Archivo |

@@ -69,15 +69,15 @@ test('WhatsApp: número y mensaje según el servicio', async ({ page }) => {
   for (const [route, text] of Object.entries(expected)) {
     await page.goto(route);
     const href = await page.locator('.wa-float').getAttribute('href');
-    expect(href).toMatch(/^https:\/\/wa\.me\/573132071358\?text=/);
+    expect(href).toMatch(/^https:\/\/wa\.me\/573004413066\?text=/);
     expect(decodeURIComponent(href)).toContain(text);
   }
 });
 
 test('contacto: enlaces de teléfono, correo y mapa', async ({ page }) => {
   await page.goto('/contacto/');
-  await expect(page.locator('.contact-actions a[href="tel:3132071358"]')).toHaveText(/Llamar ahora/);
-  await expect(page.locator('.contact-actions a[href="mailto:servicentrobogota15@gmail.com"]')).toHaveText(/Enviar correo/);
+  await expect(page.locator('.contact-actions a[href="tel:3004413066"]')).toHaveText(/Llamar ahora/);
+  await expect(page.locator('.contact-actions a[href="mailto:serviciovaltec@gmail.com"]')).toHaveText(/Enviar correo/);
   expect(await page.locator('iframe.map-frame').getAttribute('src')).toContain('Carrera%20106');
 });
 
@@ -179,7 +179,7 @@ test('formulario: entrega por WhatsApp sin afirmar que fue recibida', async ({ p
   await fillForm(page);
   const [popup] = await Promise.all([context.waitForEvent('page'), page.click('[data-submit]')]);
   const message = decodeURIComponent(popup.url());
-  expect(popup.url()).toContain('wa.me/573132071358');
+  expect(popup.url()).toContain('wa.me/573004413066');
   expect(message).toContain('Ana Pérez');
   expect(message).toContain('Marca: LG');
   await expect(page.locator('[data-status]')).toContainText('presiona enviar en WhatsApp');

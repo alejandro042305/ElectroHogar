@@ -5,12 +5,12 @@ import { company, fullAddress } from './company.js';
  * mensaje basta con editar este archivo.
  */
 export const contact = {
-  phoneDisplay: '313 207 1358',
-  phoneHref: 'tel:3132071358',
-  phoneE164: '+573132071358',
-  email: 'servicentrobogota15@gmail.com',
-  /** Número de WhatsApp con indicativo y sin signos (publicado en el sitio de referencia). */
-  whatsappNumber: '573132071358',
+  phoneDisplay: '300 441 3066',
+  phoneHref: 'tel:3004413066',
+  phoneE164: '+573004413066',
+  email: 'serviciovaltec@gmail.com',
+  /** Número de WhatsApp con indicativo y sin signos (Colombia, +57). */
+  whatsappNumber: '573004413066',
   /**
    * Endpoint opcional para el formulario (Formspree, Web3Forms, una función
    * propia...). Debe aceptar POST con JSON. Mientras esté vacío, el formulario
